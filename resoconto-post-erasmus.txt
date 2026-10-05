@@ -1,0 +1,117 @@
+RESOCONTO DEL LAVORO SUL PROGETTO CRYUL
+Periodo: 1–5 ottobre 2026
+Da consegnare alla scuola, dopo l’Erasmus
+
+Nome e cognome: ________________________________
+Classe: ________________________________
+Data: ________________________________
+
+
+1. Di che progetto si tratta
+
+In questi giorni ho lavorato a CRYUL, un sito collegato a un programma che in futuro dovrà leggere i prezzi delle valute e, da solo, comprarle e venderle.
+
+Il lavoro non è ancora un sito aperto a tutti. Gira solo sul mio computer. Per vederlo apro il browser all’indirizzo http://localhost:3000. La parola localhost significa proprio questo: il sito è su questa macchina, non su internet. Un’altra persona, da un altro computer, non può aprirlo.
+
+Il progetto è diviso in due parti.
+
+- cryul-web è il sito. È fatto con Next.js. Mostra la pagina, i prezzi e gli articoli.
+- my-strapi-project è Strapi, il pannello in cui scrivo i testi. Lo apro su http://localhost:1337/admin.
+
+Io non ho costruito tutto da solo. Ho avuto bisogno dell’aiuto di un assistente dentro l’editor, che mi ha guidato un passo alla volta, ha scritto una parte del codice e mi ha spiegato dove cliccare quando non trovavo i comandi.
+
+
+2. Che cosa volevo ottenere
+
+L’obiettivo è un sistema che legge il mercato e decide in autonomia. Non ho cominciato dai soldi veri. Come primo passo ho scelto di mostrare solo i prezzi pubblici di tre crypto, senza comprare e senza vendere: Bitcoin, Ethereum e Solana, in euro.
+
+Strapi non serve a leggere i prezzi e non serve a fare gli ordini. Serve a gestire i contenuti del sito: la pagina Chi siamo e gli articoli. I prezzi li legge il sito, da un dato pubblico di Binance, ogni volta che ricarico la pagina.
+
+
+3. Che cosa ho fatto, passo per passo
+
+Passo 1. Ho chiarito l’obiettivo.
+Ho detto che CRYUL deve diventare un sito e un software capaci di leggere i valori di mercato e di comprare e vendere valute da soli. Poi ho scelto di partire in modo sicuro: prezzi veri, nessun ordine.
+
+Passo 2. Ho acceso i due programmi.
+Il sito si avvia con il comando npm run dev, dentro la cartella cryul-web. Strapi si avvia dentro l’altra cartella. Senza questi due programmi accesi, le pagine non si aprono.
+
+Passo 3. Ho imparato ad aprire il sito nel modo giusto.
+All’inizio cercavo un file index, come nei siti che conoscevo, e ci cliccavo sopra. Il file della home qui si chiama app/page.tsx. Se ci clicco, non si apre il sito: si apre il codice nell’editor, nel mio caso Antigravity. Il sito si vede solo nel browser, all’indirizzo http://localhost:3000.
+Per non riscrivere l’indirizzo ogni volta, è stato creato nella cartella del progetto il file apri-cryul.bat. Con un doppio clic apre CRYUL nel browser e, se il sito è spento, prova ad accenderlo.
+
+Passo 4. Sulla home sono comparsi i prezzi.
+Bitcoin, Ethereum e Solana compaiono in euro, con la variazione delle ultime 24 ore. Ho controllato che, ricaricando la pagina, l’orario e i numeri cambiano. Questo pezzo di codice non l’ho scritto io: me lo ha preparato l’assistente, e io ho verificato il risultato nel browser.
+
+Passo 5. Ho modificato la pagina Chi siamo da Strapi.
+I testi non si cambiano nel file della pagina. Si cambiano nel pannello. Dopo il login, la prima voce a sinistra non è Content Manager: è Casa, la pagina iniziale. Content Manager è la voce subito sotto. Da lì ho aperto About, che è la pagina Chi siamo del sito.
+Il titolo che uso è: «Dormi pure. CRYUL non stacca.»
+Il senso è questo: la persona può staccarsi, perché è CRYUL a restare sul mercato. Una prima frase proponeva il contrario, e cioè che fosse CRYUL a dormire. L’ho corretta.
+
+Passo 6. Ho capito che il sito non è online.
+Volevo togliere la parola local dall’indirizzo. Non si può, finché il sito resta sul mio computer. localhost non è il nome della pagina. Il nome della pagina è la parte dopo, per esempio /chi-siamo. Per avere un indirizzo vero, tipo un dominio, il sito andrebbe pubblicato. Questo non l’ho ancora fatto.
+
+Passo 7. Ho creato tre articoli, uno per ogni valuta che il sito segue.
+Li ho scritti in Strapi, in Content Manager, dentro Article, e poi ho premuto Publish. I testi lunghi, la spiegazione di come funziona ogni valuta e il livello di rischio, li ho preparati con l’assistente e li ho incollati io.
+
+Sono questi:
+- Bitcoin, il prezzo che CRYUL guarda per primo. Indirizzo: /articoli/bitcoin
+- Ethereum, il motore sotto le applicazioni. Indirizzo: /articoli/ethereum
+- Solana, la più veloce e la più esposta. Indirizzo: /articoli/solana
+
+Il campo descrizione accetta al massimo 80 caratteri. Le prime frasi erano troppo lunghe e Strapi non le accettava. Le ho accorciate, per esempio per Bitcoin: «La più seguita: come nasce il prezzo e quanto può scendere.»
+
+Gli articoli sono nella categoria Finance, con data 1 ottobre 2026. Sulla home, sotto i prezzi, si vedono tutti e tre. Aprendone uno si legge il testo.
+
+Passo 8. Ho provato a fare i titoli dentro l’articolo.
+Nel testo volevo che «Come funziona» e «Quanto rischio» fossero titoli. Ho usato i pulsanti grassetto e sottolineato dell’editor. Sul sito non sono diventati titoli: si leggevano i simboli, così: <u>**Come funziona**</u>.
+Per averli come titoli, in Strapi quella riga deve iniziare con due cancelletti e uno spazio, così: ## Come funziona
+La grandezza del carattere, invece, non si regola da Strapi. Si regola nel codice, nel file components/Blocks.tsx, cambiando la classe. Per ingrandire si usa per esempio text-2xl, per rimpicciolire text-lg. Il titolo grande dell’articolo, quello con il nome della valuta, sta in un altro file: app/articoli/[slug]/page.tsx, con le classi text-4xl e sm:text-5xl.
+
+
+4. Dove ho avuto bisogno di aiuto
+
+Mi è servito aiuto quasi a ogni passaggio, perché questa struttura non è quella di un sito fatto con un semplice index.html.
+
+In particolare l’assistente mi ha aiutato a:
+- capire che il sito e Strapi sono due programmi diversi, e a che cosa serve ciascuno;
+- aggiungere sulla home la lettura dei prezzi pubblici;
+- trovare la home nel file app/page.tsx e a non confonderla con un index da aprire con un clic;
+- creare un file su cui fare doppio clic per aprire il sito;
+- trovare Content Manager, che non è la prima voce del menu;
+- scrivere il testo della missione e i tre articoli, compresa la parte sul rischio;
+- accorciare le descrizioni sotto gli 80 caratteri;
+- controllare che gli articoli pubblicati si vedessero davvero sul sito;
+- capire perché grassetto e sottolineato non diventano un titolo, e in quale file si cambia la dimensione del testo.
+
+Le scelte le ho prese io: l’obiettivo del progetto, partire senza ordini reali, il senso del titolo di Chi siamo, e la pubblicazione degli articoli nel pannello. Il codice dei prezzi e le spiegazioni passo passo sono arrivati dall’assistente.
+
+
+5. Che cosa ho imparato
+
+- Un sito Next.js non ha un index.html da aprire con un doppio clic. La home è app/page.tsx. Il nome di una cartella dentro app diventa l’indirizzo della pagina. page.tsx è la pagina.
+- Cliccare un file di codice apre l’editor. Il risultato si guarda nel browser, e solo se il server è acceso.
+- localhost vuol dire «questo computer». Un sito visto così non è online.
+- Strapi è il posto in cui scrivo e pubblico i testi. Il sito li va a leggere e li mostra. Se non pubblico, la pagina resta vuota.
+- Content Manager sta nel menu a sinistra, sotto Casa.
+- Un campo può avere un limite di caratteri. La descrizione degli articoli si ferma a 80.
+- In questo progetto un titolo nel testo si scrive con ## all’inizio della riga. I pulsanti grassetto e sottolineato non bastano.
+- La dimensione delle scritte si cambia nel codice, con classi come text-2xl o text-4xl, poi si salva e si ricarica il browser.
+- Bitcoin, Ethereum e Solana non hanno lo stesso rischio. Bitcoin è il meno instabile dei tre, e resta comunque un rischio alto. Ethereum sta un gradino sopra. Solana è il più esposto: è più giovane e il prezzo può muoversi di più. Il sito, oggi, questi prezzi li mostra soltanto.
+
+
+6. A che punto sono
+
+Fatto:
+- il sito si apre sul mio computer;
+- la home mostra i tre prezzi in euro;
+- Chi siamo si modifica da Strapi;
+- i tre articoli sono pubblicati e visibili.
+
+Non fatto, e lo dico apposta:
+- il sito non è online;
+- CRYUL non compra e non vende;
+- non c’è ancora un portafoglio, nemmeno simulato;
+- i soldi veri non sono entrati nel progetto.
+
+Il passo successivo, se continuo, è un portafoglio finto: scegliere una crypto, indicare una cifra in euro e registrare una compera o una vendita al prezzo appena letto, senza usare denaro reale.

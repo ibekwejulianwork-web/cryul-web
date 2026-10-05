@@ -1,149 +1,149 @@
 # CRYUL
 
-CRYUL è un sito per leggere il mercato delle crypto e, più avanti, per decidere compere e vendite in autonomia. Oggi fa solo la prima parte: mostra prezzi veri e testi scritti a mano. Non invia ordini e non usa denaro reale.
+CRYUL is a site for reading the crypto market and, later, for deciding buys and sells on its own. Today it only does the first part: it shows real prices and texts written by hand. It does not send orders and it does not use real money.
 
-Il progetto nasce dall’idea che una persona non debba restare tutto il giorno davanti allo schermo. La missione, scritta anche nella pagina Chi siamo, è questa: tu puoi staccarti, CRYUL resta sul mercato. Il comportamento automatico di compra e vendi non è ancora costruito. Si parte dai prezzi pubblici e da un sito che spiega ogni valuta, compreso il rischio.
+The project starts from a simple idea: a person should not have to watch the screen all day. The mission, also written on the About page, is this: you can step away, and CRYUL stays on the market. Automatic buying and selling is not built yet. The work starts with public prices and a site that explains each currency, including the risk.
 
-In questa fase il sito esiste solo sul computer di chi lo avvia. L’indirizzo `localhost` significa proprio «questo computer». Non è un dominio pubblico e non è raggiungibile da un altro PC.
+At this stage the site exists only on the computer that starts it. The address `localhost` means “this computer”. It is not a public domain, and another PC cannot open it.
 
-## Due programmi
+## Two programs
 
-CRYUL non è un solo programma. Sono due cartelle, e vanno tenute accese insieme.
+CRYUL is not one program. It is two folders, and both need to be running.
 
-| Programma | Cartella | A che cosa serve | Indirizzo |
+| Program | Folder | What it does | Address |
 | --- | --- | --- | --- |
-| Sito | `cryul-web` | Pagine, grafica, prezzi | [http://localhost:3000](http://localhost:3000) |
-| Strapi | `my-strapi-project` | Testi di Chi siamo e articoli | [http://localhost:1337/admin](http://localhost:1337/admin) |
+| Site | `cryul-web` | Pages, layout, prices | [http://localhost:3000](http://localhost:3000) |
+| Strapi | `my-strapi-project` | About page and articles | [http://localhost:1337/admin](http://localhost:1337/admin) |
 
-Strapi è il pannello dei contenuti. Lì si scrive, si corregge e si pubblica. Il sito Next.js legge quei testi e li mostra. Strapi non legge i prezzi e non fa operazioni di mercato. I prezzi li chiede il sito, da solo, all’API pubblica di Binance.
+Strapi is the content desk. Text is written, edited, and published there. The Next.js site reads those texts and displays them. Strapi does not read prices and does not place market orders. The site asks Binance’s public API for prices on its own.
 
-Se Strapi è spento, la home può ancora mostrare i prezzi. Gli articoli e Chi siamo, invece, restano vuoti o fermi all’ultimo contenuto che il sito è riuscito a leggere.
+If Strapi is off, the home page can still show prices. Articles and the About page stay empty, or stay on the last content the site managed to read.
 
-## Avvio
+## Start
 
-Apri un terminale nella cartella `cryul-web` e lancia:
+Open a terminal in the `cryul-web` folder and run:
 
 ```bash
 npm install
 npm run dev
 ```
 
-`npm install` serve solo la prima volta, oppure dopo aver cambiato le dipendenze. `npm run dev` accende il sito in modalità sviluppo. Poi apri il browser su [http://localhost:3000](http://localhost:3000).
+`npm install` is only needed the first time, or after dependencies change. `npm run dev` starts the site in development. Then open [http://localhost:3000](http://localhost:3000) in the browser.
 
-Apri un secondo terminale nella cartella `my-strapi-project` e lancia:
+Open a second terminal in the `my-strapi-project` folder and run:
 
 ```bash
 npm install
 npm run develop
 ```
 
-Quando Strapi ha finito di avviarsi, l’admin è su [http://localhost:1337/admin](http://localhost:1337/admin). Il primo avvio può richiedere un minuto. La finestra del terminale va lasciata aperta: se la chiudi, il programma si spegne e `localhost:1337` smette di rispondere.
+When Strapi has finished starting, the admin is at [http://localhost:1337/admin](http://localhost:1337/admin). The first start can take a minute. Leave that terminal window open: if you close it, the program stops and `localhost:1337` stops answering.
 
-In alternativa, dentro `cryul-web` c’è il file `apri-cryul.bat`. Un doppio clic apre il sito nel browser. Se il server del sito è spento, il file prova ad avviarlo. Non avvia Strapi: quello resta un comando a parte.
+Inside `cryul-web` there is also `apri-cryul.bat`. A double click opens the site in the browser. If the site server is off, the file tries to start it. It does not start Strapi. That remains a separate command.
 
-Il file della home si chiama `app/page.tsx`. Non è un `index.html`. Un doppio clic su `page.tsx` apre il codice nell’editor, non la pagina nel browser.
+The home page file is `app/page.tsx`. There is no `index.html`. A double click on `page.tsx` opens the code in the editor, not the page in the browser.
 
-## Che cosa si vede sul sito
+## What the site shows
 
-La home ha due blocchi.
+The home page has two blocks.
 
-Il primo è **Prezzi**. Tre schede: Bitcoin (BTC), Ethereum (ETH) e Solana (SOL). Ogni scheda mostra il prezzo in euro e la variazione delle ultime 24 ore. Il verde indica una variazione positiva, il rosso una negativa. In alto a destra c’è l’ora della lettura. Ricaricando la pagina, ora e prezzi vengono richiesti di nuovo.
+The first is **Prices**. Three cards: Bitcoin (BTC), Ethereum (ETH), and Solana (SOL). Each card shows the price in euros and the change over the last 24 hours. Green means the change is positive. Red means it is negative. The time of the reading is at the top right. Reloading the page asks for the time and the prices again.
 
-Il secondo blocco è **Articoli**. È l’elenco dei pezzi pubblicati in Strapi. Ogni scheda porta alla pagina dell’articolo. Se non c’è nessun articolo pubblicato, la home lo dice in modo esplicito.
+The second block is **Articles**. It is the list of pieces published in Strapi. Each card links to the article page. If nothing is published, the home page says so.
 
-Il menu in alto ha due voci: **Articoli**, che torna alla home, e **Chi siamo**.
+The top menu has two links: **Articles**, which returns to the home page, and **About**.
 
-### Pagine
+### Pages
 
-| Indirizzo | File | Contenuto |
+| Address | File | Content |
 | --- | --- | --- |
-| `/` | `app/page.tsx` | Prezzi e elenco articoli |
-| `/chi-siamo` | `app/chi-siamo/page.tsx` | Pagina About letta da Strapi |
-| `/articoli/bitcoin` | `app/articoli/[slug]/page.tsx` | Articolo su Bitcoin |
-| `/articoli/ethereum` | `app/articoli/[slug]/page.tsx` | Articolo su Ethereum |
-| `/articoli/solana` | `app/articoli/[slug]/page.tsx` | Articolo su Solana |
+| `/` | `app/page.tsx` | Prices and article list |
+| `/chi-siamo` | `app/chi-siamo/page.tsx` | About page read from Strapi |
+| `/articoli/bitcoin` | `app/articoli/[slug]/page.tsx` | Article about Bitcoin |
+| `/articoli/ethereum` | `app/articoli/[slug]/page.tsx` | Article about Ethereum |
+| `/articoli/solana` | `app/articoli/[slug]/page.tsx` | Article about Solana |
 
-`[slug]` non è una cartella con quel nome letterale. È il pezzo variabile dell’indirizzo. Lo slug `bitcoin` produce `/articoli/bitcoin`. Lo stesso file serve per tutti gli articoli.
+`[slug]` is not a folder with that literal name. It is the changing part of the address. The slug `bitcoin` produces `/articoli/bitcoin`. The same file serves every article.
 
-## Prezzi
+## Prices
 
-I prezzi arrivano da Binance, senza chiave e senza account. Il sito chiede il riepilogo delle ultime 24 ore per tre coppie in euro:
+Prices come from Binance, with no key and no account. The site asks for the 24-hour summary of three euro pairs:
 
 - `BTCEUR`, Bitcoin
 - `ETHEUR`, Ethereum
 - `SOLEUR`, Solana
 
-La chiamata è in `lib/markets.ts`. Usa `cache: "no-store"`, quindi Next.js non conserva la risposta tra un caricamento e l’altro. Se Binance non risponde, la home mostra un avviso al posto delle schede e il resto della pagina continua a funzionare.
+The request lives in `lib/markets.ts`. It uses `cache: "no-store"`, so Next.js does not keep the response between page loads. If Binance does not answer, the home page shows a notice instead of the cards, and the rest of the page still works.
 
-Le schede stanno in `components/MarketBoard.tsx`. Su uno schermo largo sono tre colonne. Su uno schermo stretto si mettono una sotto l’altra.
+The cards are in `components/MarketBoard.tsx`. On a wide screen they sit in three columns. On a narrow screen they stack.
 
-Questo numero è il prezzo di mercato in quel momento. Non è un consiglio di acquisto e non è un ordine. Il sito lo mostra e basta.
+That number is the market price at that moment. It is not a buy recommendation and it is not an order. The site only displays it.
 
-## Contenuti in Strapi
+## Content in Strapi
 
-Dopo il login, la prima voce del menu a sinistra è **Casa**. È solo la pagina iniziale dell’admin. I testi stanno nella voce subito sotto, **Content Manager**.
+After login, the first item in the left menu is **Home**. That is only the admin start page. The texts are in the item just below it, **Content Manager**.
 
-Dentro Content Manager ci sono due zone.
+Content Manager has two areas.
 
-- **About**, tra i tipi singoli, è la pagina Chi siamo. Il campo `title` diventa il titolo grande sul sito. I blocchi sotto sono il corpo: citazione, testo, immagini. Dopo ogni modifica va premuto **Publish**, poi si ricarica [http://localhost:3000/chi-siamo](http://localhost:3000/chi-siamo). La scritta piccola «CRYUL» sopra il titolo non viene da Strapi: è fissa nel codice della pagina.
-- **Article**, tra i tipi collezione, è un articolo. I campi usati dal sito sono `title`, `description`, `slug` e i blocchi di testo. `description` accetta al massimo 80 caratteri: una frase più lunga non si salva. Lo `slug` è la parte finale dell’indirizzo e va scritto senza spazi, per esempio `bitcoin`.
+- **About**, under single types, is the About page. The `title` field becomes the large title on the site. The blocks underneath are the body: quote, text, images. After each change, press **Publish**, then reload [http://localhost:3000/chi-siamo](http://localhost:3000/chi-siamo). The small “CRYUL” label above the title does not come from Strapi. It is fixed in the page code.
+- **Article**, under collection types, is one article. The fields the site uses are `title`, `description`, `slug`, and the text blocks. `description` accepts at most 80 characters. A longer sentence will not save. The `slug` is the last part of the address and must be written without spaces, for example `bitcoin`.
 
-Un articolo compare in home solo dopo **Publish**. Una bozza resta nel pannello e il sito non la elenca.
+An article appears on the home page only after **Publish**. A draft stays in the admin, and the site does not list it.
 
-Nel testo lungo, un titolo di sezione si scrive su una riga da sola, con due cancelletti e uno spazio:
+In the long text, a section heading is written on its own line, with two hash marks and a space:
 
 ```markdown
-## Come funziona
+## How it works
 ```
 
-I pulsanti grassetto e sottolineato dell’editor non bastano. Se si usano quelli, sul sito può comparire il codice grezzo, per esempio `<u>**Come funziona**</u>`. Il sito riconosce solo le righe che iniziano con `#`, `##` o `###`.
+The editor’s bold and underline buttons are not enough. If you use those, the site can show the raw code, for example `<u>**How it works**</u>`. The site only treats lines that start with `#`, `##`, or `###` as headings.
 
-La dimensione del carattere non si regola da Strapi. Si regola nel codice, con classi come `text-lg`, `text-2xl` o `text-4xl`. I titoli di sezione dentro un articolo stanno in `components/Blocks.tsx`. Il titolo grande della pagina articolo sta in `app/articoli/[slug]/page.tsx`.
+Font size is not set in Strapi. It is set in the code, with classes such as `text-lg`, `text-2xl`, or `text-4xl`. Section headings inside an article are in `components/Blocks.tsx`. The large title on an article page is in `app/articoli/[slug]/page.tsx`.
 
-Gli articoli già previsti, uno per ogni valuta monitorata, spiegano che cos’è la rete, come si forma il prezzo e quanto è alto il rischio. Tra le tre, Bitcoin è la meno instabile e resta comunque un rischio alto. Ethereum sta un gradino sopra. Solana è la più esposta.
+The articles already planned, one for each currency the site follows, explain what the network is, how the price is formed, and how high the risk is. Of the three, Bitcoin is the least unstable, and it is still high risk. Ethereum sits one step above that. Solana is the most exposed.
 
-## Cartelle del sito
+## Site folders
 
 ```text
 cryul-web
 ├── app
 │   ├── page.tsx                  home
-│   ├── layout.tsx                menu, fondo pagina, font
-│   ├── globals.css               colori e sfondo
+│   ├── layout.tsx                menu, footer, fonts
+│   ├── globals.css               colors and background
 │   ├── chi-siamo/page.tsx
 │   └── articoli/[slug]/page.tsx
 ├── components
 │   ├── Header.tsx                menu
 │   ├── Footer.tsx
-│   ├── MarketBoard.tsx           schede prezzi
-│   ├── ArticleCard.tsx           scheda in elenco
-│   └── Blocks.tsx                testo, titoli, immagini da Strapi
+│   ├── MarketBoard.tsx           price cards
+│   ├── ArticleCard.tsx           card in the list
+│   └── Blocks.tsx                text, headings, images from Strapi
 ├── lib
-│   ├── markets.ts                lettura prezzi
-│   ├── strapi.ts                 lettura contenuti
-│   └── types.ts                  forma dei dati
-├── apri-cryul.bat                scorciatoia per aprire il sito
-├── next.config.ts                permesso alle immagini di Strapi
+│   ├── markets.ts                price reading
+│   ├── strapi.ts                 content reading
+│   └── types.ts                  shape of the data
+├── apri-cryul.bat                shortcut that opens the site
+├── next.config.ts                allows images from Strapi
 └── package.json
 ```
 
-`lib/strapi.ts` chiama `/api/articles` e `/api/about`. Chiede anche copertina, categoria, autore e blocchi. Le immagini caricate in Strapi arrivano da `localhost:1337`: `next.config.ts` autorizza quel dominio per la cartella `/uploads`.
+`lib/strapi.ts` calls `/api/articles` and `/api/about`. It also asks for the cover, category, author, and blocks. Images uploaded in Strapi come from `localhost:1337`. `next.config.ts` allows that host for the `/uploads` folder.
 
-I file `.env` non vanno su GitHub. L’indirizzo di Strapi può stare in `.env.local`, nella variabile `STRAPI_URL`. Se manca, il sito usa `http://localhost:1337`.
+`.env` files are not pushed to GitHub. The Strapi address can live in `.env.local`, in the `STRAPI_URL` variable. If it is missing, the site uses `http://localhost:1337`.
 
-## Tecnologie
+## Technologies
 
-- [Next.js](https://nextjs.org) 16, con la cartella `app`
+- [Next.js](https://nextjs.org) 16, with the `app` folder
 - React 19
 - TypeScript
 - Tailwind CSS 4
-- Strapi 5, nel progetto separato, con database SQLite in sviluppo
+- Strapi 5, in the separate project, with SQLite in development
 
-## Che cosa non fa ancora
+## What it does not do yet
 
-- Non è online. Non ha un dominio pubblico.
-- Non compra e non vende.
-- Non ha un portafoglio, nemmeno simulato.
-- Non conserva uno storico dei prezzi: ogni apertura legge il valore del momento.
+- It is not online. It has no public domain.
+- It does not buy or sell.
+- It has no portfolio, not even a simulated one.
+- It does not keep a price history. Each visit reads the price of that moment.
 
-Il passo successivo è un portafoglio finto. Si sceglie una delle tre crypto, si indica una cifra in euro e il sito registra una compera o una vendita al prezzo appena letto, senza denaro reale.
+The next step is a fake portfolio. You pick one of the three cryptos, enter an amount in euros, and the site records a buy or a sell at the price it just read, without real money.
